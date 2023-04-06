@@ -5,7 +5,7 @@ class User < ApplicationRecord
   validates :posts_counter, numericality: { greater_than_or_equal_to: 0, only_integer: true }
 
   after_initialize do |user|
-    user.posts_counter = 0
+    user.posts_counter ||= 0
   end
 
   def recent_posts
