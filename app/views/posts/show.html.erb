@@ -1,1 +1,25 @@
-<h1>This is the first Post written by our Unique User John Doe😎</h1>
+<section>
+  <div class="border border-5 p-1 mb-3">
+    <div class="d-flex justify-content-between align-items-center">
+      <h2>
+        Post #<%= @post.id %> by <%= @user.name %>
+      </h2>
+      <div>
+        <span>Comments: <%= @post.comments_counter %></span>
+        <span>, Likes: <%= @post.likes_counter %></span>
+      </div>
+    </div>
+    <div>
+      <%= @post.text %>
+    </div>
+  </div>
+
+  <div class="border border-5 p-1 mb-3">
+  <% @post.recent_comments.each do |comment| %>
+      <div class="mt-3">
+        <span><%= comment.user.name %>:</span>
+        <span><%= comment.text %></span>
+      </div>
+    <% end %>
+  </div>
+</section>

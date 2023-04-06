@@ -1,1 +1,40 @@
-<h1>These are the details of our unique user, John Doe😎</h1>
+<h1>These are the details of our unique user, <%= @user.name %></h1>
+
+<section class="d-flex align-items-center mb-3 gap-3">
+  <div> 
+    <%= image_tag(@user.photo, class: "border p-5 border-5") %>
+  </div>
+  <div class="border border-5 w-100 p-3">
+    <h2><%= @user.name %></h2>
+    <div class="d-flex justify-content-end">
+      <p>Number of posts: <%= @user.posts_counter %></p>
+    </div>
+  </div>
+</section>
+
+<div class="border border-5 mx-auto w-100 p-3 mb-3">
+  <h2>Bio</h2>
+  <p><%= @user.bio %></p>
+</div>
+
+<div>
+  <% @user.recent_posts.each do |post| %>
+    <div class="border border-5 mx-auto w-100 p-3 mb-3">
+      <h2>Post #<%= post.id %></h2>
+      <p><%= post.title %></p>
+      <p><%= post.text %></p>
+      <div class="d-flex justify-content-end">
+        <span>Comments: <%= "#{post.comments_counter || 0}" %></span>
+        <span>, Likes: <%= "#{post.likes_counter || 0}" %></span>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="text-center p-4">
+  <a href=<%= "/users/#{ @user.id }/posts" %>>
+    <button type="button" class="btn btn-primary rounded-pill">
+      See All Posts
+    </button>
+  </a>
+</div>
