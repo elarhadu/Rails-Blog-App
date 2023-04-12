@@ -19,7 +19,9 @@
 
 <div>
   <% @user.recent_posts.each do |post| %>
-    <div class="border border-5 mx-auto w-100 p-3 mb-3">
+    <%= link_to user_post_path(@user, post), class: "post-info-link" do %>
+
+    <div class="border border-5 mx-auto w-100 p-3 mb-3 post-info" data-testid="post-<%= post.id %>" >
       <h2>Post #<%= post.id %></h2>
       <p><%= post.title %></p>
       <p><%= post.text %></p>
@@ -28,7 +30,8 @@
         <span>, Likes: <%= "#{post.likes_counter || 0}" %></span>
       </div>
     </div>
-  <% end %>
+  <% end %>  <% end %>
+
 </div>
 
 <div class="text-center p-4">
