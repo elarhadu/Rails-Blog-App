@@ -7,7 +7,7 @@ RSpec.describe PostsController, type: :request do
     it 'returns a successful response and includes correct placeholder text' do
       get user_posts_path(user)
       expect(response).to be_successful
-      expect(response.body).to include('This is a lists of all Posts written by our Unique User John Doe😎')
+      expect(response.body).to include('Welcome to our Posts Page')
     end
 
     it 'renders the index template' do
@@ -17,18 +17,18 @@ RSpec.describe PostsController, type: :request do
   end
 
   describe 'GET #show' do
-    before(:example) { get user_post_path(user_id: 1, id: 1) }
+    let(:user) { User.create(name: 'John Doe') }
+    let!(:post) { Post.create(title: 'First Post', text: 'Lorem ipsum', author: user) }
 
-    it 'returns http success status' do
-      expect(response).to have_http_status(:ok)
+    it 'returns a successful response and includes correct placeholder text' do
+      get user_post_path(user, post)
+      expect(response).to be_successful
+      expect(response.body).to include('Posts created by users')
     end
 
-    it "renders 'show' template" do
+    it 'renders the show template' do
+      get user_post_path(user, post)
       expect(response).to render_template(:show)
-    end
-
-    it 'response body includes correct placeholder text' do
-      expect(response.body).to include('This is the first Post written by our Unique User John Doe😎')
     end
   end
 end

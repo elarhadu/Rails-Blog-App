@@ -5,6 +5,7 @@ RSpec.describe 'UserShow', type: :system do
     @user1 = User.create!(id: 4, name: 'User1', photo: 'https://my.alfred.edu/zoom/_images/foster-lake.jpg',
                           bio: 'Bio for User 4', posts_counter: 1)
     @post1 = @user1.posts.create!(
+      id: 4,
       title: 'Post 1 by User 4',
       text: 'Post 1 by User4',
       comments_counter: 0,
@@ -45,7 +46,7 @@ RSpec.describe 'UserShow', type: :system do
     click_on 'See All Posts', match: :first
     expect(page).to have_link 'See All Posts', href: user_posts_path(@user1)
 
-    puts "Post1 ID: #{@post1}"
+    puts 'Post1 ID: # 4'
     puts "Current Path: #{page.current_path}"
     puts "Expected Path: #{user_post_path(@user1, @post1)}"
   end

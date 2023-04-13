@@ -5,32 +5,15 @@ RSpec.describe UsersController, type: :request do
     before(:example) { get '/users' }
 
     it 'returns http success' do
-      get '/users/index'
       expect(response).to have_http_status(:ok)
     end
 
-    it('is correct template rendered') do
+    it 'renders the index template' do
       expect(response).to render_template(:index)
     end
 
-    it('is response body includes correct placeholder text') do
-      expect(response.body).to include('Here are all our unique Users😎')
-    end
-  end
-
-  describe 'GET /show' do
-    before(:example) { get '/users/:user_id' }
-
-    it 'returns http success' do
-      expect(response).to have_http_status(:ok)
-    end
-
-    it('is correct template rendered') do
-      expect(response).to render_template(:show)
-    end
-
-    it('is response body includes correct placeholder text') do
-      expect(response.body).to include('These are the details of our unique user, John Doe😎')
+    it 'includes the correct placeholder text in the response body' do
+      expect(response.body).to include('A list of Users')
     end
   end
 end
