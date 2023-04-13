@@ -1,9 +1,14 @@
 <h1>These are the details of A User</h1>
 
 <section class="d-flex align-items-center mb-3 gap-3">
-  <div> 
+  <div>
+  <% if @user.photo.present? %>
     <%= image_tag(@user.photo, class: "border p-5 border-5") %>
-  </div>
+  <% else %>
+    <img src="/images/default_profile.jpg" class="border p-5 border-5" alt="Default Profile Image">
+  <% end %>
+</div>
+
   <div class="border border-5 w-100 p-3">
     <h2><%= @user.name %></h2>
     <div class="d-flex justify-content-end">
