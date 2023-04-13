@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
+  before_action :update_allowed_parameters, if: :devise_controller?
+
   def index
     @users = User.includes(:posts).all
-    @current_user = current_user
   end
 
   def show
