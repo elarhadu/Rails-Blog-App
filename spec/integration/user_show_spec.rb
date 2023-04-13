@@ -27,7 +27,6 @@ RSpec.describe 'UserShow', type: :system do
     @user2.destroy if @user2.present?
   end
 
-
   it 'displays user show page information' do
     visit user_path(@user1)
 
